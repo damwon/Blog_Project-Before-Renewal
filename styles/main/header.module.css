@@ -1,0 +1,45 @@
+.Main {
+  width: 1200px;
+  margin: 0 auto;
+  display: block;
+  position: fixed;
+  border-bottom: 1px solid #eee;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+.Banner {
+  width: auto;
+  height: 81px;
+  background-color: #f3f3f1;
+  display: flex;
+}
+
+.logo {
+  width: 140px;
+  height: 50px;
+  border: 2px solid #34495e;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin: 15px 40px 0 5px;
+  color: #333;
+  font-size: 28px;
+  background-color: #e1f3ff;
+  cursor: pointer;
+}
+
+.intro,
+.project,
+.blog,
+.github {
+  margin: 28px 20px;
+  color: #333;
+}
+
+.intro:hover,
+.project:hover,
+.blog:hover,
+.github:hover {
+  color: #004abf;
+}
