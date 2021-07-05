@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../../styles/main/project.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import axios from 'axios'
-import classNames from 'classnames';
+import classNames from 'classnames'
+
 const icons = {
 	position: "relative",
 	top: "4.5px",
@@ -17,10 +18,27 @@ const slideArrow = {
 	fontSize: "40px",
 	border: "1px solid #ddd",
 	borderRadius: "150px",
-	backgroundColor: "#f3f3f1"
+	backgroundColor: "#f3f3f1",
+  cursor: "pointer"
+}
+let slideAnimation = {
+  transform: "translate3d(0px, 0px, 0px)"
 }
 
 const project = ({list}) => {
+  const [index, setNumber] = useState(0)
+  const slideLeft = () => {
+    setNumber(prevNumber => prevNumber - 1)
+		let temp = list.pop()
+		list.unshift(temp)
+  }
+
+  const slideRight = () => {
+    setNumber(prevNumber => prevNumber + 1)
+		let temp = list.shift()
+		list.push(temp)
+  }
+
 	return (
 		<div>
 			<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -132,7 +150,7 @@ const project = ({list}) => {
 					<div className={styles.personalPjtTitle}>
 						<span>개인 프로젝트</span>
 					</div>
-					<div className={classNames({ [styles.personalPjtDesc]: true, [styles.desc]: true,})}>
+					<div className={[styles.personalPjtDesc,styles.desc].join(' ')}>
 						<span>
 							다양한 기술을 학습하거나 간단한 문제를 해결하기 위한 프로젝트입니다.<br />
 							일부 프로젝트는 배포되어 운영되고 있습니다.
@@ -140,28 +158,31 @@ const project = ({list}) => {
 					</div>
 					<div>
 						<ul className={styles.personalListBox}>
-						  <div className={styles.buttonPrev}>
+						  <div className={styles.buttonPrev} onClick={slideLeft}>
 							  <span style={slideArrow} class="material-icons">chevron_left</span>
 						  </div>
 							<div className={styles.liBox}>
-								{list.map((list) => (
-									<li key={list.id}>
-										<Link href={`/project/${list.id}`}><a target="_blank">
-											<div className={styles.intro}>
-												<div className={styles.logo}>
-													<Image width={365} height={241} src="/src/mok_aboutperiod.png" />
-												</div>
-												<div className={styles.title}>{list.title}</div>
-												<div className={styles.detail}>
-													<div>{list.skills}</div>
-													<div>{list.date}</div>
-												</div>
-											</div>
-										</a></Link>
-									</li>
-								))}
+                <div className={styles.slideWrapper} style={slideAnimation}>
+                  {list.map((lists) => (
+                    <li key={lists.id}>
+                      <Link href={`/project/${lists.id}`}><a target="_blank">
+                        <div className={styles.intro}>
+                          <div className={styles.logo}>
+                            <Image width={365} height={241} src="/src/mok_aboutperiod.png" />
+                          </div>
+                          <div className={styles.title}>{lists.title}</div>
+                          <div className={styles.detail}>
+                            <div>{lists.skills}</div>
+                            <div>{lists.date}</div>
+														<div>{list.indexOf(lists)}, {index}</div>
+                          </div>
+                        </div>
+                      </a></Link>
+                    </li>
+                  ))}
+                </div>
 							</div>
-						  <div className={styles.buttonNext}>
+						  <div className={styles.buttonNext} onClick={slideRight}>
 							  <span style={slideArrow} class="material-icons">chevron_right</span>
 						  </div>
 						</ul>

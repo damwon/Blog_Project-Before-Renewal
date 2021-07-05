@@ -11,7 +11,8 @@ const db = require('../../../config/db')
 // }
 
 export default async (req, res) => {
-  const sql = 'SELECT * FROM GT_BLOG'
+  const sql = 'SELECT * FROM GT_BLOG ID where ID NOT IN ("6")'
+  // const sql = 'SELECT * FROM GT_BLOG'
   const P_PJT = await blogFunctions.getList(sql)
   const results = []
   for (const i of P_PJT) {

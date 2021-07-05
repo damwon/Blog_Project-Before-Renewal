@@ -92,18 +92,27 @@
   background: #004abf;
 }
 
-.personalListBox,
-.liBox {
+.personalListBox {
   display: flex;
 }
 .liBox {
   width: 1040px;
   overflow: hidden;
 }
-.personalListBox > .liBox > li {
-  margin: 0 35px 31px 0;
+.personalListBox > .liBox > .slideWrapper > li {
+  /* width: 346px; */
+  margin: 0 36px 31px 0;
   cursor: pointer;
   font-weight: 150;
+}
+
+.slideWrapper {
+  display: flex;
+}
+
+.slideWrapper > li .intro {
+  width: 311px;
+  height: 296px;
 }
 
 .personalListBox .title {
