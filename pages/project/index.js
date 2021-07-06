@@ -22,21 +22,38 @@ const slideArrow = {
   cursor: "pointer"
 }
 let slideAnimation = {
-  transform: "translate3d(0px, 0px, 0px)"
+  transform: "translate3d(0px, 0px, 0px)",
+	transitionDuration: "1000sms"
 }
-
+let slideAnimation1 = {
+  transform: "translate3d(-346px, 0px, 0px)",
+	transitionDuration: "1000ms"
+}
+let slideAnimation2 = {
+  transform: "translate3d(+346px, 0px, 0px)",
+	transitionDuration: "1000ms"
+}
+let flag = false
 const project = ({list}) => {
   const [index, setNumber] = useState(0)
   const slideLeft = () => {
     setNumber(prevNumber => prevNumber - 1)
 		let temp = list.pop()
 		list.unshift(temp)
+		if (flag == false) {
+			slideAnimation = slideAnimation1
+			flag = true
+		} else if (flag == true) {
+			slideAnimation = slideAnimation2
+			flag = false
+		}
   }
 
   const slideRight = () => {
     setNumber(prevNumber => prevNumber + 1)
 		let temp = list.shift()
 		list.push(temp)
+		this.slideAnimation.transform = `translate3d(-${10 * index}px, 0px, 0px)`
   }
 
 	return (
