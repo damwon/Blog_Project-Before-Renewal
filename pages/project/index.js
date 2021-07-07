@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import axios from 'axios'
 import classNames from 'classnames'
+import styled from 'styled-components'
 
 const icons = {
 	position: "relative",
