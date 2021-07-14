@@ -17,7 +17,7 @@ const slideArrow = {
 	fontSize: "40px",
 	border: "1px solid #ddd",
 	borderRadius: "150px",
-	backgroundColor: "#f3f3f1"
+	backgroundColor: "#f3f3f2"
 }
 
 const project = ({list}) => {
